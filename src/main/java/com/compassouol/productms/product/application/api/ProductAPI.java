@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/public/v1/products")
+@RequestMapping("products")
 public interface ProductAPI {
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
