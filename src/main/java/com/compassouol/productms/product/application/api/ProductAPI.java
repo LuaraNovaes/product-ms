@@ -20,7 +20,7 @@ public interface ProductAPI {
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public ResponseEntity<ProductDto> create(@RequestBody @Valid ProductForm productForm, UriComponentsBuilder uriBuilder);
 	
-	@GetMapping("/products/{idProduct}")
+	@GetMapping("/products/{id}")
 	@ResponseStatus(value = HttpStatus.OK)
 	ProductDto findById(@PathVariable String idProduct);
 
