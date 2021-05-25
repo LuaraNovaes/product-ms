@@ -1,5 +1,8 @@
 package com.compassouol.productms.product.infrastructure;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.stereotype.Component;
 
 import com.compassouol.productms.product.application.repository.ProductRepository;
@@ -20,5 +23,10 @@ public class ProductJpaRepository implements ProductRepository {
 		Product savedProduct = this.productSpringDataJpaRepository.save(product);
 		log.info("[Finishes] ProductJpaRepository - save");
 		return savedProduct;
+	}
+
+	@Override
+	public Optional<Product> findById(String idProduct) {
+		return productSpringDataJpaRepository.findById(UUID.fromString(idProduct));
 	}
 }

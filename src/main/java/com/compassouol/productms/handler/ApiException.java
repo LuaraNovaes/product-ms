@@ -16,6 +16,7 @@ public class ApiException extends RuntimeException {
 		super(message, e);
 		this.httpStatusCode = httpStatusCode;
 		this.apiErrorResponse = ErrorApiDTO.builder()
+				.statusCode(httpStatusCode.value())
 				.message(message)
 				.build();
 	}

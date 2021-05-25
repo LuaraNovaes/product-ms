@@ -26,8 +26,18 @@ public class ProductRestController implements ProductAPI {
 		Product product = productService.savedProduct(productDTO.toEntityProduct());
 		log.info("produto {} salvo!", product.toString());
 		URI uri = uriBuilder.path("/productms/app/v1/product/{productId}").buildAndExpand(product.getId()).toUri();
-		log.info("[Finishes] ProductRestController - create");
+		log.info("[Finish] ProductRestController - create");
 		return ResponseEntity.created(uri).body(ProductDto.buildByEntity(product));
 	}
+
+	@Override
+	public ProductDto findById(String idProduct) {
+		log.info("[Start] ProductRestController - findById");
+           Product product = productService.findById(idProduct);
+           log.info("[Finish] ProductRestController - findById");
+		return ProductDto.buildByEntity(product);
+	}
+
+
 
 }

@@ -1,7 +1,9 @@
 package com.compassouol.productms.product.application.service;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.compassouol.productms.handler.ApiException;
 import com.compassouol.productms.product.application.repository.ProductRepository;
 import com.compassouol.productms.product.domain.Product;
 
@@ -18,7 +20,16 @@ public class ProductSpringDataJPAService implements ProductService {
 	public Product savedProduct(Product product) {
 		log.info("[Start] ProductSpringDataJPAService - saveProduct");
 		this.productRepository.save(product);
-		log.info("[Finishes] ProductSpringDataJPAService - saveProduct");
+		log.info("[Finish] ProductSpringDataJPAService - saveProduct");
 		return product;
+	}
+
+	@Override
+	public Product findById(String idProduct) {
+		log.info("[Start] ProductSpringDataJPAService - findById");
+       Product productById = productRepository.findById(idProduct)
+       .orElseThrow(() -> ApiException.throwApiException(HttpStatus.NOT_FOUND, "Product not found!"));
+       log.info("[Finish] ProductSpringDataJPAService - findById");
+		return productById;
 	}
 }

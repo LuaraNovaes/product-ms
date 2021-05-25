@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,4 +19,9 @@ public interface ProductAPI {
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public ResponseEntity<ProductDto> create(@RequestBody @Valid ProductForm productForm, UriComponentsBuilder uriBuilder);
+	
+	@GetMapping("/products/{idProduct}")
+	@ResponseStatus(value = HttpStatus.OK)
+	ProductDto findById(@PathVariable String idProduct);
+
 }

@@ -9,5 +9,7 @@ public interface ProductService {
 
 	Product savedProduct(Product Product);
 
+	Product findById(String idProduct);
+
 
 }
