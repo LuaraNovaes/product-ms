@@ -15,9 +15,9 @@ public class ProductJpaRepository implements ProductRepository {
 	private final ProductSpringDataJpaRepository productSpringDataJpaRepository;
 
 	@Override
-	public Product save(Product entityProduct) {
+	public Product save(Product product) {
 		log.info("[Start] ProductJpaRepository - save");
-		Product savedProduct = this.productSpringDataJpaRepository.save(entityProduct);
+		Product savedProduct = this.productSpringDataJpaRepository.save(product);
 		log.info("[Finishes] ProductJpaRepository - save");
 		return savedProduct;
 	}

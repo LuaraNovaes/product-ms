@@ -23,8 +23,7 @@ public class ProductForm {
 	@NotBlank(message = "description empty")
 	private String description;
 
-	@NotNull(message = "price notnull")
-	@NotBlank(message = "price empty")
+//	@NotNull(message = "price notnull")
 	private BigDecimal price;
 	//TODO Validar o valor positivo
 
@@ -32,6 +31,7 @@ public class ProductForm {
 		return Product.builder()
 				.name(this.name)
 				.description(this.description)
+				.price(price)
 				.build();
 	}
 }

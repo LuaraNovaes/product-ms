@@ -23,11 +23,11 @@ public class ProductRestController implements ProductAPI {
 	@Override
 	public ResponseEntity<ProductDto> create(@Valid ProductForm productDTO, UriComponentsBuilder uriBuilder) {
 		log.info("[Start] ProductRestController - create");
-		Product product = productService.saveProduct(productDTO.toEntityProduct());
+		Product product = productService.savedProduct(productDTO.toEntityProduct());
 		log.info("produto {} salvo!", product.toString());
 		URI uri = uriBuilder.path("/productms/app/v1/product/{productId}").buildAndExpand(product.getId()).toUri();
 		log.info("[Finishes] ProductRestController - create");
-		return null;
+		return ResponseEntity.created(uri).body(ProductDto.buildByEntity(product));
 	}
 
 }

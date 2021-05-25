@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,6 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Product {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
@@ -35,16 +35,6 @@ public class Product {
 	@NonNull
 	private String description;
 
-	@NotBlank
-	@NonNull
+	@NotNull
 	private BigDecimal price;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 }

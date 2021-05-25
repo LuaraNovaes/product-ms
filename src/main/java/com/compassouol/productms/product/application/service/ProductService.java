@@ -7,7 +7,7 @@ import com.compassouol.productms.product.domain.Product;
 @Service
 public interface ProductService {
 
-	Product saveProduct(Product entityProduct);
+	Product savedProduct(Product Product);
 
 
 }
