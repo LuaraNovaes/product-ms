@@ -36,5 +36,9 @@ public class ProductJpaRepository implements ProductRepository {
 		return productSpringDataJpaRepository.findAll();
 	}
 
+	@Override
+	public void delete(Product findById) {
+       this.productSpringDataJpaRepository.delete(findById);		
+	}
 
 }

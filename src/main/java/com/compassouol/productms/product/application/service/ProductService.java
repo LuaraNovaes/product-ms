@@ -17,4 +17,6 @@ public interface ProductService {
 
 	Product update(String id, Product productByForm);
 
+	void deleteById(String id);
+
 }

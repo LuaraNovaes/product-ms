@@ -34,27 +34,32 @@ public class ProductRestController implements ProductAPI {
 	@Override
 	public ProductDto findById(String id) {
 		log.info("[Start] ProductRestController - findById");
-           Product product = productService.findById(id);
-           log.info("[Finish] ProductRestController - findById");
+		Product product = productService.findById(id);
+		log.info("[Finish] ProductRestController - findById");
 		return ProductDto.buildByEntity(product);
 	}
 
 	@Override
 	public List<ProductDto> findAll() {
 		log.info("[Start] ProductRestController - findAll");
-        List<Product> products = productService.findAll();
-        log.info("[Finish] ProductRestController - findAll");
+		List<Product> products = productService.findAll();
+		log.info("[Finish] ProductRestController - findAll");
 		return ProductDto.parseListDTO((List<Product>) products);
 	}
 
 	@Override
 	public ProductDto update(String id, @Valid ProductUpdateForm updateForm) {
 		log.info("[Start] ProductRestController - update");
-		Product product = productService.update(id,updateForm.buildProduct(id));
+		Product product = productService.update(id, updateForm.buildProduct(id));
 		log.info("[Finish] ProductRestController - update");
 		return new ProductDto(product);
 	}
 
-
+	@Override
+	public void deleteById(String id) {
+		log.info("[Start] ProductRestController - delete");
+		productService.deleteById(id);
+		log.info("[Finish] ProductRestController - delete");
+	}
 
 }
