@@ -27,25 +27,29 @@ public class ProductSpringDataJPAService implements ProductService {
 	}
 
 	@Override
-	public Product findById(String idProduct) {
+	public Product findById(String id) {
 		log.info("[Start] ProductSpringDataJPAService - findById");
-       Product productById = productRepository.findById(idProduct)
+       Product productById = productRepository.findById(id)
        .orElseThrow(() -> ApiException.throwApiException(HttpStatus.NOT_FOUND, "Product not found!"));
        log.info("[Finish] ProductSpringDataJPAService - findById");
 		return productById;
 	}
 
 	@Override
-	public List<Product> findAll(Product product) {
-		List<Product> allProducts = productRepository.findAll(product);
+	public List<Product> findAll() {
+		log.info("[Start] ProductSpringDataJPAService - findAll");
+		List<Product> allProducts = productRepository.findAll();
+		log.info("[Finish] ProductSpringDataJPAService - findAll");
 		return allProducts;
 	}
 
 	@Override
-	public Product update(Product buildProduct) {
-		Product productById = productRepository.findById(buildProduct.getId());
-		productById.update(buildProduct);
+	public Product update(String id, Product productByForm) {
+		log.info("[Start] ProductSpringDataJPAService - update");
+		Product productById =   this.findById(id);
+		productById.update(productByForm);
 		productRepository.save(productById);
+		log.info("[Finish] ProductSpringDataJPAService - update");
 		return productById;
 	}
 }

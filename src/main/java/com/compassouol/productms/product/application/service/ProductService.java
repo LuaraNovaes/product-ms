@@ -11,11 +11,10 @@ public interface ProductService {
 
 	Product savedProduct(Product Product);
 
-	Product findById(String idProduct);
+	Product findById(String id);
 
-	List<Product> findAll(Product product);
+	List<Product> findAll();
 
-	Product update(Product buildProduct);
-
+	Product update(String id, Product productByForm);
 
 }

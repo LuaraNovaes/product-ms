@@ -27,18 +27,14 @@ public class ProductJpaRepository implements ProductRepository {
 	}
 
 	@Override
-	public Optional<Product> findById(String idProduct) {
-		return productSpringDataJpaRepository.findById(UUID.fromString(idProduct));
+	public Optional<Product> findById(String id) {
+		return productSpringDataJpaRepository.findById(UUID.fromString(id));
 	}
 
 	@Override
-	public List<Product> findAll(Product product) {
+	public List<Product> findAll() {
 		return productSpringDataJpaRepository.findAll();
 	}
 
-	@Override
-	public Optional<Product> findById(UUID id) {
-		return  productSpringDataJpaRepository.findById(id);
-	}
 
 }

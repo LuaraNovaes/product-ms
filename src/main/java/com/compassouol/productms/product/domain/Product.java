@@ -38,11 +38,10 @@ public class Product {
 	@NotNull
 	private BigDecimal price;
 
-	public void update(Product buildProduct) {
+	public void update(Product product) {
 		
-		this.id = buildProduct.getId();
-		this.name = buildProduct.getName();
-		this.description = buildProduct.getDescription();
-		this.price = buildProduct.getPrice();
+		this.name = product.getName();
+		this.description = product.getDescription();
+		this.price = product.getPrice();
 	}
 }

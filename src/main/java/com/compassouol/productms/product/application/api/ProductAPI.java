@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.compassouol.productms.product.domain.Product;
-
 @RestController
 @RequestMapping("products")
 public interface ProductAPI {
@@ -28,11 +26,11 @@ public interface ProductAPI {
 	
 	@GetMapping("/products/{id}")
 	@ResponseStatus(value = HttpStatus.OK)
-	ProductDto findById(@PathVariable String idProduct);
+	ProductDto findById(@PathVariable String id);
 	
 	@GetMapping("/products")
 	@ResponseStatus(value = HttpStatus.OK)
-	List<ProductDto> findAll(Product product);
+	List<ProductDto> findAll();
 	
 	@PutMapping("/products/{id}")
 	@ResponseStatus(value = HttpStatus.OK)
