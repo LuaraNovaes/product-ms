@@ -1,6 +1,7 @@
 package com.compassouol.productms.product.application.api;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -36,6 +37,19 @@ public class ProductRestController implements ProductAPI {
            Product product = productService.findById(idProduct);
            log.info("[Finish] ProductRestController - findById");
 		return ProductDto.buildByEntity(product);
+	}
+
+	@Override
+	public List<ProductDto> findAll(Product product) {
+        List<Product> products = productService.findAll(product);
+		return ProductDto.parseListDTO((List<Product>) products);
+	}
+
+	@Override
+	public ProductDto update(String idProduct, @Valid ProductUpdateForm updateForm) {
+		Product product = productService.update(updateForm.buildProduct(idProduct));
+		log.info("Finishing Method Update in Client Controller!");
+		return new ProductDto(product);
 	}
 
 

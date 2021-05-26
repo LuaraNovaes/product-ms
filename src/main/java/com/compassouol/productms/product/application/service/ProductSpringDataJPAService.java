@@ -1,5 +1,7 @@
 package com.compassouol.productms.product.application.service;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,20 @@ public class ProductSpringDataJPAService implements ProductService {
        Product productById = productRepository.findById(idProduct)
        .orElseThrow(() -> ApiException.throwApiException(HttpStatus.NOT_FOUND, "Product not found!"));
        log.info("[Finish] ProductSpringDataJPAService - findById");
+		return productById;
+	}
+
+	@Override
+	public List<Product> findAll(Product product) {
+		List<Product> allProducts = productRepository.findAll(product);
+		return allProducts;
+	}
+
+	@Override
+	public Product update(Product buildProduct) {
+		Product productById = productRepository.findById(buildProduct.getId());
+		productById.update(buildProduct);
+		productRepository.save(productById);
 		return productById;
 	}
 }

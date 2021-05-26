@@ -1,5 +1,6 @@
 package com.compassouol.productms.product.infrastructure;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,4 +30,15 @@ public class ProductJpaRepository implements ProductRepository {
 	public Optional<Product> findById(String idProduct) {
 		return productSpringDataJpaRepository.findById(UUID.fromString(idProduct));
 	}
+
+	@Override
+	public List<Product> findAll(Product product) {
+		return productSpringDataJpaRepository.findAll();
+	}
+
+	@Override
+	public Optional<Product> findById(UUID id) {
+		return  productSpringDataJpaRepository.findById(id);
+	}
+
 }

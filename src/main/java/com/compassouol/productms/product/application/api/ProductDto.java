@@ -1,7 +1,9 @@
 package com.compassouol.productms.product.application.api;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.compassouol.productms.product.domain.Product;
 
@@ -28,4 +30,15 @@ public class ProductDto {
 				.build();
 	}
 
+
+	public static List<ProductDto> parseListDTO(List<Product> products) {
+		return products.stream().map(ProductDto::new).collect(Collectors.toList());
+	}
+
+	public ProductDto(Product product) {
+		this.id = product.getId();
+		this.name = product.getName();
+		this.description = product.getDescription();
+		this.price = product.getPrice();
+	}
 }

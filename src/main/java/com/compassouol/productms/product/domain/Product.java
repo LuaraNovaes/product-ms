@@ -20,8 +20,8 @@ import lombok.ToString;
 
 @Entity
 @Builder
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
 @ToString
 public class Product {
@@ -37,4 +37,12 @@ public class Product {
 
 	@NotNull
 	private BigDecimal price;
+
+	public void update(Product buildProduct) {
+		
+		this.id = buildProduct.getId();
+		this.name = buildProduct.getName();
+		this.description = buildProduct.getDescription();
+		this.price = buildProduct.getPrice();
+	}
 }
