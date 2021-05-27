@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.compassouol.productms.handler.ApiException;
 import com.compassouol.productms.product.application.repository.ProductRepository;
 import com.compassouol.productms.product.domain.Product;
+import com.compassouol.productms.product.domain.ProductFilters;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -60,5 +61,13 @@ public class ProductSpringDataJPAService implements ProductService {
 		log.info("Deleting product id  on productRepository");
 		productRepository.delete(this.findById(id));
 		log.info("[Finish] ProductRestController - delete");
+	}
+
+	@Override
+	public List<Product> findAll(ProductFilters filters) {
+		log.info("[Start] ProductSpringDataJPAService - findAll");
+		List<Product> allProducts = productRepository.findAll(filters);
+		log.info("[Finish] ProductSpringDataJPAService - findAll");
+		return allProducts;
 	}
 }

@@ -1,5 +1,6 @@
 package com.compassouol.productms.product.application.api;
 
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.compassouol.productms.product.application.service.ProductService;
 import com.compassouol.productms.product.domain.Product;
+import com.compassouol.productms.product.domain.ProductFilters;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -62,4 +64,17 @@ public class ProductRestController implements ProductAPI {
 		log.info("[Finish] ProductRestController - delete");
 	}
 
+	@Override
+	public List<ProductDto> searchProducts(String query, BigDecimal minPrice, BigDecimal maxPrice) {
+		log.info("[Start] ProductRestController - findAll");
+		ProductFilters filters = ProductFilters.builder()
+				.query(query)
+				.minPrice(minPrice)
+				.maxPrice(maxPrice)
+				.build();
+		log.info("Filters: {}",filters);
+		List<Product> products = productService.findAll(filters);
+		log.info("[Finish] ProductRestController - findAll");
+		return ProductDto.parseListDTO((List<Product>) products);
+	}
 }

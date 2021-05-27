@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.compassouol.productms.product.domain.Product;
+import com.compassouol.productms.product.domain.ProductFilters;
 
 @Service
 public interface ProductService {
@@ -19,4 +20,5 @@ public interface ProductService {
 
 	void deleteById(String id);
 
+	List<Product> findAll(ProductFilters filters);
 }

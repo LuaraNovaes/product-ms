@@ -1,5 +1,6 @@
 package com.compassouol.productms.product.application.api;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -25,19 +26,24 @@ public interface ProductAPI {
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public ResponseEntity<ProductDto> create(@RequestBody @Valid ProductForm productForm, UriComponentsBuilder uriBuilder);
 	
-	@GetMapping("/products/{id}")
+	@GetMapping("/{id}")
 	@ResponseStatus(value = HttpStatus.OK)
 	ProductDto findById(@PathVariable String id);
 	
-	@GetMapping("/products")
+	@GetMapping
 	@ResponseStatus(value = HttpStatus.OK)
 	List<ProductDto> findAll();
 	
-	@PutMapping("/products/{id}")
+	@PutMapping("/{id}")
 	@ResponseStatus(value = HttpStatus.OK)
 	ProductDto update(@RequestParam String idProduct,@RequestBody @Valid ProductUpdateForm updateForm);
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	void deleteById(@PathVariable String id);
+	
+	@GetMapping("/search")
+	public List<ProductDto> searchProducts(@RequestParam(value = "q", required = false) String query,
+			@RequestParam(value = "min_price", required = false) BigDecimal minPrice,
+			@RequestParam(value = "max_price", required = false) BigDecimal maxPrice);
 }

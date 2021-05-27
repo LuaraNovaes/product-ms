@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.compassouol.productms.product.application.repository.ProductRepository;
 import com.compassouol.productms.product.domain.Product;
+import com.compassouol.productms.product.domain.ProductFilters;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -41,4 +42,8 @@ public class ProductJpaRepository implements ProductRepository {
        this.productSpringDataJpaRepository.delete(findById);		
 	}
 
+	@Override
+	public List<Product> findAll(ProductFilters filters) {
+		return productSpringDataJpaRepository.findAll(filters.buildSpecification());
+	}
 }
